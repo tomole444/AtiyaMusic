@@ -1,6 +1,6 @@
 # Kanged By © @always_hungry365
 # Owner Mayank
-# All rights reserved. © Alisha © OpVir © Yukki
+# All rights reserved. © Alisha © Atiya © Yukki
 # Subscribe On YT Jankari Ki Duniya
 
 from motor.motor_asyncio import AsyncIOMotorClient as _mongo_client_
@@ -17,7 +17,7 @@ TEMP_MONGODB = ""
 if config.MONGO_DB_URI is None:
     LOGGER(__name__).warning("No MONGO DB URL found. LOL")
     temp_client = Client(
-        "OpVir",
+        "Atiya",
         bot_token=config.BOT_TOKEN,
         api_id=config.API_ID,
         api_hash=config.API_HASH,
@@ -33,5 +33,5 @@ if config.MONGO_DB_URI is None:
 else:
     _mongo_async_ = _mongo_client_(config.MONGO_DB_URI)
     _mongo_sync_ = MongoClient(config.MONGO_DB_URI)
-    mongodb = _mongo_async_.OpVir
-    pymongodb = _mongo_sync_.OpVir
+    mongodb = _mongo_async_.Atiya
+    pymongodb = _mongo_sync_.Atiya

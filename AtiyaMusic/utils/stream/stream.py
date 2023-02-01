@@ -16,7 +16,7 @@ from AtiyaMusic.utils.exceptions import AssistantErr
 from AtiyaMusic.utils.inline.play import (stream_markup, queue_markup,
                                           telegram_markup)
 from AtiyaMusic.utils.inline.playlist import close_markup
-from AtiyaMusic.utils.pastebin import OpVirbin
+from AtiyaMusic.utils.pastebin import Atiyabin
 from AtiyaMusic.utils.stream.queue import put_queue, put_queue_index
 from AtiyaMusic.utils.thumbnails import gen_thumb, gen_qthumb
 
@@ -122,7 +122,7 @@ async def stream(
         if count == 0:
             return
         else:
-            link = await OpVirbin(msg)
+            link = await Atiyabin(msg)
             lines = msg.count("\n")
             if lines >= 17:
                 car = os.linesep.join(msg.split(os.linesep)[:17])

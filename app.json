@@ -1,12 +1,12 @@
 {
-    "name": "OpVir Music Bot",
+    "name": "Atiya Music Bot",
     "description": "Telegram Group Calls streaming bot with some useful features, written in Python with Pyrogram and Py-Tgcalls. Supporting platforms like Youtube, Spotify, Resso, AppleMusic, Soundcloud and M3u8 Links.",
     "logo": "https://telegra.ph/file/9912be7bdd20a99c2bf23.png",
     "keywords": [
     "python3",
     "telegram",
     "bot",
-    "OpVir",
+    "Atiya",
     "AtiyaMusic",
     "telegram-bot",
     "pyrogram"
@@ -34,7 +34,7 @@
         "required": true
       },
       "MONGO_DB_URI": {
-        "description": "Get a mongodb url from https://cloud.mongodb.com . You can leave it blank if you want , bot will use OpVir's database for you.",
+        "description": "Get a mongodb url from https://cloud.mongodb.com . You can leave it blank if you want , bot will use Atiya's database for you.",
         "value": "",
         "required": true
       },
