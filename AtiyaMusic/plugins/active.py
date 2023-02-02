@@ -77,7 +77,7 @@ async def activevi_(_, message: Message):
 #-------------------------------------------------------------------#
 
 
-LOGINGG = config.LOG_GROUP_ID
+LOGINGG = config.LOGGER_ID
 
 
 #--------------------------Code------------------#
