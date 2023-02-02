@@ -1,11 +1,19 @@
-from pyrogram import filters
+import asyncio
+import math
+import os
+import shutil
+import socket
+import traceback
+import psutil
+import config
+from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from strings import get_command
 from AtiyaMusic import app
 from AtiyaMusic.misc import SUDOERS
+from AtiyaMusic.utils.cmdforac import avoice
+from strings import get_command
 from AtiyaMusic.utils.database.memorydatabase import (
-    get_active_chats, get_active_video_chats)
+    get_active_chats as active, get_active_video_chats as activevideo)
 
 # Commands
 ACTIVEVC_COMMAND = get_command("ACTIVEVC_COMMAND")
@@ -17,7 +25,7 @@ async def activevc(_, message: Message):
     mystic = await message.reply_text(
         "ɢᴇᴛᴛɪɴɢ ᴀᴄᴛɪᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛs ʟɪsᴛ..."
     )
-    served_chats = await get_active_chats()
+    served_chats = await active()
     text = ""
     j = 0
     for x in served_chats:
@@ -45,7 +53,7 @@ async def activevi_(_, message: Message):
     mystic = await message.reply_text(
         "ɢᴇᴛᴛɪɴɢ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛs ʟɪsᴛ..."
     )
-    served_chats = await get_active_video_chats()
+    served_chats = await activevideo()
     text = ""
     j = 0
     for x in served_chats:
@@ -66,3 +74,36 @@ async def activevi_(_, message: Message):
             f"**ʟɪsᴛ ᴏғ ᴄᴜʀʀᴇɴᴛʟʏ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛs ᴏɴ ᴍᴜsɪᴄ ʙᴏᴛ :-**\n\n{text}",
             disable_web_page_preview=True,
         )
+#-------------------------------------------------------------------#
+
+
+LOGINGG = config.LOG_GROUP_ID
+
+
+#--------------------------Code------------------#
+
+@app.on_message(avoice(["/av"]) & SUDOERS)
+async def start(client: Client, message: Message):
+    ac_audio = str(len(active))
+    ac_video = str(len(activevideo))
+    await message.reply_text(f"𝗕𝗼𝘁 𝗔𝗰𝘁𝗶𝘃𝗲 𝗖𝗵𝗮𝘁𝘀 𝗜𝗻𝗳𝗼 • 📟\n•━━━━━━━━━━━━━━━━━━•\n🎙•Aᴜᴅɪᴏ  » {ac_audio} Gʀᴏᴜᴘs\n•───────•\n🖥• Vɪᴅᴇᴏ » {ac_video} Gʀᴏᴜᴘs\n•──────•", quote=True)
+
+
+#--------------------------Clean_Commands------------------------#
+
+@app.on_message(avoice(["/rm"]) & SUDOERS)
+async def cleaning(client: Client, message: Message):
+    A = 'rm -rf downloads'
+    try:
+        os.system(A)
+    except:
+        await message.reply_text(f"Failed To Delete Temp !!\nPlease Read\n{traceback.format_exc()}", quote=True)
+    await message.reply_text(f"Successfully Deleted Below Folders:\n -Downloads", quote=True)
+
+    
+CPU_LOAD = psutil.cpu_percent(interval=0.5)
+RAM_LOAD = psutil.virtual_memory().percent
+DISK_SPACE = psutil.disk_usage("/").percent
+
+
+#-----------------------------AUTO_CLEANER-&-SAFETY-------------------------------#
