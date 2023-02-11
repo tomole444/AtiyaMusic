@@ -21,7 +21,7 @@ OWNER_ID = list(
 )
     
 SUPPORT_CHANNEL = getenv(
-    "SUPPORT_CHANNEL", "https://t.me/ROCKS_BOT_SUPPORT")
+    "SUPPORT_CHANNEL", "https://t.me/incorrect_krishna")
 SUPPORT_GROUP = getenv(
     "SUPPORT_GROUP", "https://t.me/frienddd_zoneee")
 
@@ -96,34 +96,34 @@ clean = {}
 
 autoclean = []
 
-START_IMG_URL = getenv("START_IMG_URL", "https://te.legra.ph/file/fa898291a360b85acb1ab.mp4")
+START_IMG_URL = getenv("START_IMG_URL", "https://telegra.ph/file/2ac6f260c40c47fd9efb2.jpg")
 
 PING_IMG_URL = getenv(
     "PING_IMG_URL",
-    "https://telegra.ph/file/c384e0a5f8a49c1c331a3.png",
+    "https://te.legra.ph/file/c4c5576e1abbcf760a6d3.jpg",
 )
 
-PLAYLIST_IMG_URL = "https://telegra.ph/file/075610fd1519afd9ed467.png"
+PLAYLIST_IMG_URL = "https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg"
 
-GLOBAL_IMG_URL = "https://telegra.ph/file/d531b3f0827db188acc33.png"
+GLOBAL_IMG_URL = "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
 
-STATS_IMG_URL = "https://telegra.ph/file/d531b3f0827db188acc33.png"
+STATS_IMG_URL = "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
 
-TELEGRAM_AUDIO_URL = "https://telegra.ph/file/98b8aabf1bfda012d6dc7.png"
+TELEGRAM_AUDIO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
 
-TELEGRAM_VIDEO_URL = "https://telegra.ph/file/98b8aabf1bfda012d6dc7.png"
+TELEGRAM_VIDEO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
 
-STREAM_IMG_URL = "https://telegra.ph/file/98b8aabf1bfda012d6dc7.png"
+STREAM_IMG_URL = "https://te.legra.ph/file/bd995b032b6bd263e2cc9.jpg"
 
-SOUNCLOUD_IMG_URL = "https://telegra.ph/file/98b8aabf1bfda012d6dc7.png"
+SOUNCLOUD_IMG_URL = "https://te.legra.ph/file/bb0ff85f2dd44070ea519.jpg"
 
-YOUTUBE_IMG_URL = "https://telegra.ph/file/98b8aabf1bfda012d6dc7.png"
+YOUTUBE_IMG_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
 
-SPOTIFY_ARTIST_IMG_URL = "https://telegra.ph/file/98b8aabf1bfda012d6dc7.png"
+SPOTIFY_ARTIST_IMG_URL = "https://te.legra.ph/file/37d163a2f75e0d3b403d6.jpg"
 
-SPOTIFY_ALBUM_IMG_URL = "https://telegra.ph/file/98b8aabf1bfda012d6dc7.png"
+SPOTIFY_ALBUM_IMG_URL = "https://te.legra.ph/file/b35fd1dfca73b950b1b05.jpg"
 
-SPOTIFY_PLAYLIST_IMG_URL = "https://telegra.ph/file/98b8aabf1bfda012d6dc7.png"
+SPOTIFY_PLAYLIST_IMG_URL = "https://te.legra.ph/file/95b3ca7993bbfaf993dcb.jpg"
 
 
 def time_to_seconds(time):
