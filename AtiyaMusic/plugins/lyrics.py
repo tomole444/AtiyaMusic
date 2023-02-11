@@ -15,7 +15,7 @@ from AtiyaMusic.utils.decorators.language import language
 ###Commands
 LYRICS_COMMAND = get_command("LYRICS_COMMAND")
 
-api_key = "JVv8pud-25QRBYyRwcH34AlAygySsSAU3owRNGBw6hXO96x0JiTMn-3R4PvsjcTf"
+api_key = "YOUR API KEY"
 y = lg.Genius(
     api_key,
     skip_non_songs=True,
