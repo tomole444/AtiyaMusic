@@ -1,49 +1,47 @@
-import asyncio
-import math
-import os
-import shutil
-import socket
-import traceback
-import psutil
-import config
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.types import Message
+
+from strings import get_command
 from AtiyaMusic import app
 from AtiyaMusic.misc import SUDOERS
-from AtiyaMusic.utils.cmdforac import avoice
-from strings import get_command
+from AtiyaMusic.utils.inline.play import close_keyboard
 from AtiyaMusic.utils.database.memorydatabase import (
-    get_active_chats as active, get_active_video_chats as activevideo)
+    get_active_chats, get_active_video_chats)
 
-# Commands
+
 ACTIVEVC_COMMAND = get_command("ACTIVEVC_COMMAND")
 ACTIVEVIDEO_COMMAND = get_command("ACTIVEVIDEO_COMMAND")
 
 
 @app.on_message(filters.command(ACTIVEVC_COMMAND) & SUDOERS)
 async def activevc(_, message: Message):
-    mystic = await message.reply_text(
-        "ɢᴇᴛᴛɪɴɢ ᴀᴄᴛɪᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛs ʟɪsᴛ..."
-    )
-    served_chats = await active()
+    mystic = await message.reply_text("**ɢᴇᴛᴛɪɴɢ ʟɪsᴛ ᴏғ ᴀᴄᴛɪᴠᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛs...**")
+    served_chats = await get_active_chats()
     text = ""
     j = 0
     for x in served_chats:
         try:
             title = (await app.get_chat(x)).title
         except Exception:
-            title = "ᴩʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ"
+            title = "ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ"
         if (await app.get_chat(x)).username:
-            user = (await app.get_chat(x)).username
-            text += f"<b>{j + 1}.</b>  [{title}](https://t.me/{user})[`{x}`]\n"
+            try:
+                user = (await app.get_chat(x)).username
+                text += f"<b>{j + 1}.</b>  [{title}](https://t.me/{user})\n"
+            except:
+                continue
         else:
-            text += f"<b>{j + 1}. {title}</b> [`{x}`]\n"
+            try:
+                text += f"<b>{j + 1}. {title}</b> [`{x}`]\n"
+            except:
+                continue
         j += 1
     if not text:
-        await mystic.edit_text("ɴᴏ ᴀᴄᴛɪᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛs ᴏɴ ᴍᴜsɪᴄʙᴏᴛ...")
+        await mystic.edit_text(f"» ɴᴏ ᴀᴄᴛɪᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛs ᴏɴ {config.BOT_NAME}.")
     else:
         await mystic.edit_text(
-            f"**ʟɪsᴛ ᴏғ ᴄᴜʀʀᴇɴᴛʟʏ ᴀᴄᴛɪᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛs ᴏɴ ᴍᴜsɪᴄ ʙᴏᴛ :-**\n\n{text}",
+            f"**ᴀᴄᴛɪᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛs ʟɪsᴛ :**\n\n{text}",
+            reply_markup=close_keyboard,
             disable_web_page_preview=True,
         )
 
@@ -53,7 +51,7 @@ async def activevi_(_, message: Message):
     mystic = await message.reply_text(
         "ɢᴇᴛᴛɪɴɢ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛs ʟɪsᴛ..."
     )
-    served_chats = await activevideo()
+    served_chats = await get_active_video_chats()
     text = ""
     j = 0
     for x in served_chats:
@@ -74,36 +72,3 @@ async def activevi_(_, message: Message):
             f"**ʟɪsᴛ ᴏғ ᴄᴜʀʀᴇɴᴛʟʏ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛs ᴏɴ ᴍᴜsɪᴄ ʙᴏᴛ :-**\n\n{text}",
             disable_web_page_preview=True,
         )
-#-------------------------------------------------------------------#
-
-
-LOGINGG = config.LOGGER_ID
-
-
-#--------------------------Code------------------#
-
-@app.on_message(avoice(["/av"]) & SUDOERS)
-async def start(client: Client, message: Message):
-    ac_audio = str(len(active))
-    ac_video = str(len(activevideo))
-    await message.reply_text(f"𝗕𝗼𝘁 𝗔𝗰𝘁𝗶𝘃𝗲 𝗖𝗵𝗮𝘁𝘀 𝗜𝗻𝗳𝗼 • 📟\n•━━━━━━━━━━━━━━━━━━•\n🎙•Aᴜᴅɪᴏ  » {ac_audio} Gʀᴏᴜᴘs\n•───────•\n🖥• Vɪᴅᴇᴏ » {ac_video} Gʀᴏᴜᴘs\n•──────•", quote=True)
-
-
-#--------------------------Clean_Commands------------------------#
-
-@app.on_message(avoice(["/rm"]) & SUDOERS)
-async def cleaning(client: Client, message: Message):
-    A = 'rm -rf downloads'
-    try:
-        os.system(A)
-    except:
-        await message.reply_text(f"Failed To Delete Temp !!\nPlease Read\n{traceback.format_exc()}", quote=True)
-    await message.reply_text(f"Successfully Deleted Below Folders:\n -Downloads", quote=True)
-
-    
-CPU_LOAD = psutil.cpu_percent(interval=0.5)
-RAM_LOAD = psutil.virtual_memory().percent
-DISK_SPACE = psutil.disk_usage("/").percent
-
-
-#-----------------------------AUTO_CLEANER-&-SAFETY-------------------------------#
