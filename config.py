@@ -21,9 +21,9 @@ OWNER_ID = list(
 )
     
 SUPPORT_CHANNEL = getenv(
-    "SUPPORT_CHANNEL", "https://t.me/incorrect_krishna")
+    "SUPPORT_CHANNEL", "https://t.me/AARU_CHAT")
 SUPPORT_GROUP = getenv(
-    "SUPPORT_GROUP", "https://t.me/frienddd_zoneee")
+    "SUPPORT_GROUP", "https://t.me/AARU_CHATS")
 
 DURATION_LIMIT_MIN = int(
     getenv("DURATION_LIMIT", "900")
